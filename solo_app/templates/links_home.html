@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Successful Login</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">  
+</head>
+<body>
+    <div class="wrapper">
+        <h1 class="mainh1">Welcome {{ request.session.user_name }}!</h1>
+        <a class="page_link" href="/contact">Contact Us</a>
+        <br><br>
+        <a class="page_link" href="/logout">Logout</a>
+        <div id="link_creator">
+            <h2>Link Input:</h2>
+            {% if messages %}
+                <ul>
+                    {% for error in messages %}
+                    <li>{{error}}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %} 
+            <form id="link_submission" action="/create_link" method="POST">
+                {% csrf_token%}
+                <textarea name="content" cols="50" rows="3"></textarea>
+                <input id="linksubmit" type="submit" value="Add Link!">
+            </form>
+        </div>
+        <img id="knowledge_pic" src="{% static 'img/knowledge.jpg' %}"/>   
+        <div id="locker">
+            {% for link in all_links %}
+            <div class="locker_links">
+                {% if link.poster.id == request.session.user_id %} 
+                <a href="/delete_link/{{link.id}}">Delete Link</a>
+                <a target="_blank|"><p>{{link.content|urlize}}</p></a>
+                <!-- <a href="/{{ link.content }}" target="_blank" rel="noopener noreferrer">{{link.content|urlize}}</a> -->
+                {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+    </div>    
+</body>
+</html>
+
+

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">  
+</head>
+<body>
+    <div class="wrapper">
+            <h1>Contact Us</h1>
+            <a id="goback" href="/back">Go Back</a>
+            <br><br>
+            <form id="formcontent" action="/contact_form" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="form-actions">
+                    <button type="submit">Send</button>
+                </div>   
+            </form>
+            <img id="email_pic" src="{% static 'img/email_pic.jpg' %}"/>    
+            <div id="aboutus">
+                <h2 class="about">About Link Locker</h2>
+                <p>Link locker was created with the goal of helping a user stay organized in a world where there is quite literally an infinite amount of data being produced daily. Instead of cluttering your desktop notes or bookmarks, you can store all those random links in one place and read them as time permits. Updates to this version will include automated emails via Celery which can be used in Django to automate/schedule happenings.</p>
+                <h2 class="about">About The Developer</h2>
+                <p id="thanks">The developer of Link Locker has nothing but gratitude and love for everyone who assisted him on this project. A TREMENDOUS SHOUT OUT AND THANKS GOES TO: @INSTRUCTOR_ZACK, @INSTRUCTOR_LEE, @CRYSTAL_A, @TA_ALAYNE, @TA_RACHEAL, & @TA_DREW!</p>
+            </div>     
+    </div>  
+</body> 
+</html>
+
+
+
+
+
+
+
+

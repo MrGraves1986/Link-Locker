@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Registration</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">  
+</head>
+<body>
+    <div class="wrapper">
+        <h1 class="mainh1">Welcome to Link Locker!</h1>
+        <h2 id="purpose">"Helping you organize all the random fun things you want to read without cluttering your bookmarks or desktop notes."</h2>
+        <h3>Register</h3>
+        {% if messages %}
+            <ul>
+                {% for error in messages %}
+                <li>{{error}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <div id="reg_form">   
+            <form id="form1" action="/register" method="post">
+            {% csrf_token %}
+            First Name: <input type="text" name="first_name">
+            <br><br>
+            Last Name: <input type="text" name="last_name">
+            <br><br>
+            Email: <input type="text" name="email">
+            <br><br>
+            Password: <input type="password" name="pw">
+            <br><br>
+            Confirm PW: <input type="password" name="confirm_pw">
+            <br><br>
+            <input type="submit" value="Register">
+            </form>
+        </div>
+        <!-- <br>
+        <br> -->
+        <img id="index_image" src="{% static 'img/learning.jpg' %}"/>
+        <h3>Login</h3>
+        <div id="login_form">
+            <form id="form2" action="/login" method="post">
+            {% csrf_token%}
+            User Email: <input type="email" name="email">
+            Password: <input type="password" name="pw">
+            <input type="submit" value="Login">
+            </form>
+        </div>    
+    </div>
+</body>
+</html>
